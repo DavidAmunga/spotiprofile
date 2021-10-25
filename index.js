@@ -77,7 +77,8 @@ app.get('/callback', (req, res) => {
     })
       .then((response) => {
         if (response.status == 200) {
-          const { access_token, token_type, refresh_token ,expires_in} = response.data;
+          const { access_token, token_type, refresh_token, expires_in } =
+            response.data;
 
           const queryParams = querystring.stringify({
             access_token,
@@ -115,6 +116,23 @@ app.get('/refresh_token', (req, res) => {
       ).toString('base64')}`,
     },
   })
+    .then((response) => {
+      res.send(response.data);
+    })
+    .catch((error) => {
+      res.send(error);
+    });
+});
+
+app.get('/me', (req, res) => {
+  const { Authorization } = req.headers;
+  axios
+    .get('https://accounts.spotify.com/v1/me', {
+      headers: {
+        'content-type': 'application/x-www-form-urlencoded',
+        Authorization,
+      },
+    })
     .then((response) => {
       res.send(response.data);
     })
