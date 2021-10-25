@@ -1,3 +1,3 @@
-## Spotify NodeJS API
+## Spotify App
 
-This is the NodeJS API for the Spotiprofile Client
+This is the Backend API and Frontend for the Spotiprofile Client
