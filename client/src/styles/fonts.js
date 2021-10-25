@@ -1,0 +1,31 @@
+import { css } from 'styled-components/macro';
+
+const fonts = css`
+  /* Uncomment the lines below if you have custom font files in public/fonts */
+
+  /* @font-face {
+    font-family: 'Circular Std';
+    src: url('../fonts/CircularStd-Book.woff') format('woff'),
+    url('../fonts/CircularStd-Book.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Circular Std';
+    src: url('../fonts/CircularStd-Bold.woff') format('woff'),
+    url('../fonts/CircularStd-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Circular Std';
+    src: url('../fonts/CircularStd-Black.woff') format('woff'),
+    url('../fonts/CircularStd-Black.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+  } */
+`;
+
+export default fonts;
