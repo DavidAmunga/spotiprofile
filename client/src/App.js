@@ -1,8 +1,15 @@
 import { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useLocation,
+} from 'react-router-dom';
 import { accessToken, logout, getCurrentUsersProfile } from './spotify';
 import { catchErrors } from './utils';
 import './App.css';
+import ScrollToTop from './components/utils/ScrollToTop';
 
 function App() {
   const [token, setToken] = useState(null);
@@ -27,6 +34,7 @@ function App() {
           </a>
         ) : (
           <Router>
+            <ScrollToTop />
             <Switch>
               <Route path="/top-artists">
                 <h1>Top Artists</h1>
@@ -42,7 +50,7 @@ function App() {
               </Route>
               <Route path="/">
                 <>
-                  <button onClick={()=>logout()}>Log out</button>
+                  <button onClick={() => logout()}>Log out</button>
                   {profile && (
                     <div>
                       <h1>{profile.display_name}</h1>
