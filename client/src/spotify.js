@@ -91,7 +91,6 @@ const getAccessToken = () => {
     [LOCALSTORAGE_KEYS.refreshToken]: urlParams.get('refresh_token'),
     [LOCALSTORAGE_KEYS.expireTime]: urlParams.get('expires_in'),
   };
-
   const hasError = urlParams.get('error');
 
   // If there's an error OR the token in localStorage has expired, refresh the token
@@ -103,7 +102,7 @@ const getAccessToken = () => {
     refreshToken();
   }
 
-  // If there is a valid access token in localStorage use that
+  // If there is a valid access token in localStorage, use that
   if (
     LOCALSTORAGE_VALUES.accessToken &&
     LOCALSTORAGE_VALUES.accessToken !== 'undefined'
@@ -111,19 +110,19 @@ const getAccessToken = () => {
     return LOCALSTORAGE_VALUES.accessToken;
   }
 
-  // If there is a token in the URL query params , user is logging in for the first time
+  // If there is a token in the URL query params, user is logging in for the first time
   if (queryParams[LOCALSTORAGE_KEYS.accessToken]) {
-    // Store the Query Params in local storage
+    // Store the query params in localStorage
     for (const property in queryParams) {
       window.localStorage.setItem(property, queryParams[property]);
     }
-
     // Set timestamp
     window.localStorage.setItem(LOCALSTORAGE_KEYS.timestamp, Date.now());
-    // Return accesstoken from query params
+    // Return access token from query params
     return queryParams[LOCALSTORAGE_KEYS.accessToken];
   }
 
+  // We should never get here!
   return false;
 };
 
@@ -138,6 +137,45 @@ axios.defaults.headers['Content-Type'] = `application/json`;
 
 /**
  * Get Current Users Profile
+ * https://developer.spotify.com/documentation/web-api/reference/#/operations/get-current-users-profile
  * @returns {Promise}
  */
 export const getCurrentUsersProfile = () => axios.get(`/me`);
+
+/**
+ * Get a List of Current User's Playlists
+ * https://developer.spotify.com/documentation/web-api/reference/#/operations/get-a-list-of-current-users-playlists
+ * @returns {Promise}
+ */
+
+export const getCurrentUserPlaylists = (limit = 20) => {
+  return axios.get(`/me/playlists?limit=${limit}`);
+};
+
+/**
+ * Get a Users Top Artists
+ * https://developer.spotify.com/documentation/web-api/reference/#/operations/get-users-top-artists-and-tracks
+ * @param {string} time_range -  Over what time frame the affinities are computed. Valid values
+ *  long_term (calculated from several years of data and including all new data as it becomes available),
+ *  medium_term (approximately last 6 months),
+ *  short_term (approximately last 4 weeks).
+ *  Default: medium_term
+ * @returns {Promise}
+ */
+export const getCurrentUserTopArtists = (time_range = 'short_term') => {
+  return axios.get(`/me/top/artists?time_range=${time_range}`);
+};
+
+/**
+ * Get a Users Top Tracks
+ * https://developer.spotify.com/documentation/web-api/reference/#/operations/get-users-top-artists-and-tracks
+ * @param {string} time_range -  Over what time frame the affinities are computed. Valid values
+ *  long_term (calculated from several years of data and including all new data as it becomes available),
+ *  medium_term (approximately last 6 months),
+ *  short_term (approximately last 4 weeks).
+ *  Default: medium_term
+ * @returns {Promise}
+ */
+export const getCurrentUserTopTracks = (time_range = 'short_term') => {
+  return axios.get(`/me/top/tracks?time_range=${time_range}`);
+};

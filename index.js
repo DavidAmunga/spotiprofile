@@ -39,7 +39,11 @@ app.get('/login', (req, res) => {
   const state = generateRandomString(16);
   res.cookie(stateKey, state);
 
-  const scope = 'user-read-private user-read-email';
+  const scope = [
+    'user-read-private',
+    'user-read-email',
+    'user-top-read'
+  ].join(' ');
 
   const queryParams = querystring.stringify({
     client_id: CLIENT_ID,
@@ -116,23 +120,6 @@ app.get('/refresh_token', (req, res) => {
       ).toString('base64')}`,
     },
   })
-    .then((response) => {
-      res.send(response.data);
-    })
-    .catch((error) => {
-      res.send(error);
-    });
-});
-
-app.get('/me', (req, res) => {
-  const { Authorization } = req.headers;
-  axios
-    .get('https://accounts.spotify.com/v1/me', {
-      headers: {
-        'content-type': 'application/x-www-form-urlencoded',
-        Authorization,
-      },
-    })
     .then((response) => {
       res.send(response.data);
     })
