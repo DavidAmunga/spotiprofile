@@ -7,6 +7,7 @@ import {
 } from '../spotify';
 import { StyledHeader } from '../styles';
 import {
+  Loader,
   SectionWrapper,
   ArtistsGrid,
   TrackList,
@@ -66,7 +67,7 @@ const Profile = () => {
           </div>
         </StyledHeader>
       )}
-      {topArtists && topTracks && playlists && (
+      {topArtists && topTracks && playlists ? (
         <main>
           <SectionWrapper
             title="Top Artists this month"
@@ -84,6 +85,8 @@ const Profile = () => {
             <PlaylistsGrid playlists={playlists.items.slice(0, 10)} />
           </SectionWrapper>
         </main>
+      ) : (
+        <Loader />
       )}
     </div>
   );

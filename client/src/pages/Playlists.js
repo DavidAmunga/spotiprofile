@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { PlaylistsGrid, SectionWrapper } from '../components';
+import { PlaylistsGrid, SectionWrapper, Loader } from '../components';
 import { getCurrentUserPlaylists } from '../spotify';
 import { catchErrors } from '../utils';
 import axios from 'axios';
@@ -47,8 +47,10 @@ const Playlists = () => {
   return (
     <main>
       <SectionWrapper title="Playlists" breadcrumb="true">
-        {playlists && playlists && (
+        {playlists && playlists ? (
           <PlaylistsGrid playlists={playlists.slice(0, 10)} />
+        ) : (
+          <Loader />
         )}
       </SectionWrapper>
     </main>
