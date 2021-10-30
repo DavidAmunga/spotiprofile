@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { accessToken, logout } from './spotify';
 import ScrollToTop from './components/utils/ScrollToTop';
 import { GlobalStyle } from './styles';
-import { Login, Profile, TopArtists, TopTracks, Playlists } from './pages';
+import { Login, Profile, TopArtists, TopTracks, Playlists ,Playlist} from './pages';
 import styled from 'styled-components/macro';
 
 const StyledLogoutButton = styled.div`
@@ -48,8 +48,8 @@ function App() {
                 <Route path="/top-tracks">
                   <TopTracks />
                 </Route>
-                <Route path="/playlist/:id">
-                  <h1>Playlist</h1>
+                <Route path="/playlists/:id">
+                  <Playlist/>
                 </Route>
                 <Route path="/playlists">
                   <Playlists />

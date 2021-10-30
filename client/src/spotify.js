@@ -179,3 +179,22 @@ export const getCurrentUserTopArtists = (time_range = 'short_term') => {
 export const getCurrentUserTopTracks = (time_range = 'short_term') => {
   return axios.get(`/me/top/tracks?time_range=${time_range}`);
 };
+
+/**
+ * https://developer.spotify.com/documentation/web-api/reference/#/operations/get-playlist
+ * @param {string} playlist_id - The Spotify ID for the playlist
+ * @returns {Promise}
+ */
+export const getPlaylistById = (playlist_id) => {
+  return axios.get(`/playlists/${playlist_id}`);
+};
+
+/**
+ * Get Audio Features for Several Tracks
+ * https://developer.spotify.com/documentation/web-api/reference/#/operations/get-several-audio-features
+ * @param {string} - A Comma separated list of the spotify ID's for the tracks
+ * @returns {Promise}
+ */
+export const getAudioFeaturesForTracks = (ids) => {
+  return axios.get(`/audio-features?ids=${ids}`);
+};
