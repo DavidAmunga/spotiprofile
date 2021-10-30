@@ -1,6 +1,11 @@
-## Spotiprofile App
+<img src="./client/build/../public/icon-512.png" width="150"/>
 
-React App using Spotify API
+# Spotiprofile App
+
+Web App using Express,React and Spotify API to visualize personal Spotify Data
+
+## Screenshots
+<img src="./client/build/og.png">
 
 ## Local Installation and Setup
 
