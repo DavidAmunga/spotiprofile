@@ -23,12 +23,15 @@ const StyledLoginButton = styled.a`
   }
 `;
 
+const LOGIN_URL =
+  process.env.NODE_ENV !== 'production'
+    ? 'http://localhost:8888/login'
+    : 'https://spotiprofile.herokuapp.com/login';
+
 const Login = () => {
   return (
     <StyledLoginContainer>
-      <StyledLoginButton href="http://localhost:8888/login">
-        Login to Spotify
-      </StyledLoginButton>
+      <StyledLoginButton href={LOGIN_URL}>Login to Spotify</StyledLoginButton>
     </StyledLoginContainer>
   );
 };
