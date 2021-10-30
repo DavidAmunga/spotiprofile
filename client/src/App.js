@@ -3,7 +3,14 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { accessToken, logout } from './spotify';
 import ScrollToTop from './components/utils/ScrollToTop';
 import { GlobalStyle } from './styles';
-import { Login, Profile, TopArtists, TopTracks, Playlists ,Playlist} from './pages';
+import {
+  Login,
+  Profile,
+  TopArtists,
+  TopTracks,
+  Playlists,
+  Playlist,
+} from './pages';
 import styled from 'styled-components/macro';
 
 const StyledLogoutButton = styled.div`
@@ -17,6 +24,7 @@ const StyledLogoutButton = styled.div`
   font-weight: 700;
   border-radius: var(--border-radius-pill);
   z-index: 10;
+  cursor: pointer;
   @media (min-width: 768px) {
     right: var(--spacing-lg);
   }
@@ -49,7 +57,7 @@ function App() {
                   <TopTracks />
                 </Route>
                 <Route path="/playlists/:id">
-                  <Playlist/>
+                  <Playlist />
                 </Route>
                 <Route path="/playlists">
                   <Playlists />
