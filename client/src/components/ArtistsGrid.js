@@ -22,7 +22,7 @@ const ArtistsGrid = ({ artists }) => {
           ))}
         </StyledGrid>
       ) : (
-        <p className="empty-notice">No Aritsts Available</p>
+        <p className="empty-notice">No Artists Available</p>
       )}
     </>
   );
